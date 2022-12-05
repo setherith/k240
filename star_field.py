@@ -1,7 +1,11 @@
 from PIL import Image
 from random import uniform
+from os.path import exists
 
 def generate_stars(width, height):
+
+    if exists('stars.png'):
+        return
 
     stars = Image.new(mode="RGB", size=(width, height))
     for x in range(width):
