@@ -36,6 +36,6 @@ def update():
     if held_keys['s']:
         camera.rotation_x -= time.dt * 40
 
-    print (camera.rotation, camera.position)
+    # print (camera.rotation, camera.position)
 
 app.run()
