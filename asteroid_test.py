@@ -17,7 +17,11 @@ for count in range(5):
 blue_button = Entity(model='quad', texture='resources/blue_button.png', position=(0.59, -0.42, 0), scale=(0.14, 0.07), parent=camera.ui)
 
 # date...
-date_text = Entity(model=Text('E2-381-42', origin=(-0.75, 0.5)), parent=camera.ui, position=(0.50, -0.465, 0))
+eons = 2
+years = 380
+days = 1
+date_text = Text(f'E{int(eons)}.{int(years):003}.{int(days):002}', origin=(-0.75, 0.5))
+date_entity = Entity(model=date_text, parent=camera.ui, position=(0.50, -0.465, 0))
 
 # generate star field...
 import star_field
@@ -34,13 +38,10 @@ for w in range(0, width):
         gray = int(uniform(50, 100))
         Entity(model='cube', scale_y=size, position=(w,0 - size / 2,h), color=color.rgb(gray, gray, gray))
 
-
 #EditorCamera()
 camera.rotation = Vec3(30, 225, 0)
 camera.position = Vec3(25, 12, 25)
 camera.orthographic = True
-
-counter = 0
 
 def update():
     if held_keys['d']:
@@ -52,11 +53,27 @@ def update():
     if held_keys['s']:
         camera.rotation_x -= time.dt * 40
 
-    counter += time.dt
-    if counter > 1:
-        print ("Tick (1 sec)")
-        counter = 0
-
     # print (camera.rotation, camera.position, time.dt)
 
-app.run()
+counter = 0
+
+while True:
+
+    counter += time.dt
+    
+    # tick...
+    if counter > 1:
+        # update date in game...
+        days += 0.5
+        if days == 100:
+            years += 1
+            days = 1
+        if years == 1000:
+            eons += 1
+            years = 1
+        if days % 1 == 0:
+            date_text.text = f'E{int(eons)}.{int(years):003}.{int(days):002}'
+
+        counter = 0
+
+    app.step()
