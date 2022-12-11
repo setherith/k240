@@ -37,10 +37,11 @@ for w in range(0, width):
     for h in range(0, height):
         size = int(uniform(1, 5))
         gray = int(uniform(50, 100))
-        Entity(model='cube', scale_y=size, position=(w,0 - size / 2,h), color=color.rgb(gray, gray, gray))
-
-# test object for camera...
-test = Entity(model='cube', color=color.blue, position=(5, 0, 5), scale=1)
+        if w == width / 2 and h == height / 2:
+            # highlight centre of asteroid for reference...
+            Entity(model='cube', scale_y=size, position=(w,0 - size / 2,h), color=color.red)
+        else:
+            Entity(model='cube', scale_y=size, position=(w,0 - size / 2,h), color=color.rgb(gray, gray, gray))
 
 counter = 0
 camera_controls = CameraControl(camera)
@@ -65,9 +66,17 @@ while True:
         counter = 0
 
     # camera control...
+    if held_keys['w']:
+        camera_controls.tilt_up()
+    if held_keys['s']:
+        camera_controls.tilt_down()
     if held_keys['d']:
         camera_controls.turn_right()
     if held_keys['a']:
         camera_controls.turn_left()
+    if held_keys['[']:
+        camera_controls.zoom_out()
+    if held_keys[']']:
+        camera_controls.zoom_in()
 
     app.step()
