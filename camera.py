@@ -11,8 +11,8 @@ class CameraControl:
 
     camera_speed: float = 0.01
     initial_angle: float = 0.7 # Radians?
-    initial_radius: float = 20
-    initial_tilt: float = 225
+    initial_radius: float = -16
+    initial_tilt: float = 15
 
     def __init__(self, camera: Camera):
         self.camera = camera
@@ -23,8 +23,8 @@ class CameraControl:
         # camera setup...
         self.camera.fov = 25
         self.camera.orthographic = True
-        self.camera.rotation_x = 30
-        self.camera.rotation_z = self.tilt
+        self.camera.rotation = Vec3(0, 0, 0)
+        self.update()
 
     def turn_left(self):
         self.angle -= self.camera_speed
@@ -51,9 +51,9 @@ class CameraControl:
         self.update()
 
     def update(self):
-        x = self.radius * math.sin(self.angle)
-        y = self.radius * math.cos(self.angle)
+        x = self.radius * math.sin(self.angle) + 10
+        y = self.radius * math.cos(self.angle) + 10
         self.camera.set_position(Vec3(x, self.camera.position.y, y))
         self.camera.rotation_y = math.degrees(self.angle)
-        self.camera.rotation_z = self.tilt
-        print (self.camera.rotation_y)
+        self.camera.rotation_x = self.tilt
+        print (f"Pos: {self.camera.position}, Rot: {self.camera.rotation}, Rad: {self.radius}")
