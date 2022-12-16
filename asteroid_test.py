@@ -12,11 +12,13 @@ app = Ursina(size=(1024, 768), borderless=False)
 buttons_left = []
 y = 0.44
 for count in range(5):
-    red_button = Entity(model='quad', texture='resources/red_button.png', position=(0.59, y, 0), scale=(0.14, 0.07), parent=camera.ui)
+    red_button = Entity(model='quad', texture='assets/red_button.png', position=(0.59, y, 0), scale=(0.14, 0.07), parent=camera.ui)
     buttons_left.append(red_button)
     y -= 0.44 / 5
 
-blue_button = Entity(model='quad', texture='resources/blue_button.png', position=(0.59, -0.42, 0), scale=(0.14, 0.07), parent=camera.ui)
+blue_button = Entity(model='quad', texture='assets/blue_button.png', position=(0.59, -0.42, 0), scale=(0.14, 0.07), parent=camera.ui)
+
+example_building = Entity(model='models_compressed/shipyard.obj', texture='models_compressed/texture.png', position=(3.5, 0, 3.5))
 
 # date...
 eons = 2
