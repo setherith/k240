@@ -21,6 +21,7 @@ class CameraControl:
         self.tilt = self.initial_tilt
 
         # camera setup...
+        self.camera.position = (self.camera.position.x, 5, self.camera.position.z)
         self.camera.fov = 25
         self.camera.orthographic = True
         self.camera.rotation = Vec3(0, 0, 0)
