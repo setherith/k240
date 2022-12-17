@@ -4,7 +4,7 @@ from os.path import exists
 
 def generate_stars(width, height):
 
-    if exists('stars.png'):
+    if exists('assets/stars.png'):
         return
 
     stars = Image.new(mode="RGB", size=(width, height))

@@ -32,7 +32,7 @@ import star_field
 sf_width = 5000
 sf_height = 5000
 star_field.generate_stars(sf_width, sf_height)
-background = Entity(model=Plane(), texture='stars.png', rotation=(0, 0, 0), position=(0, -5, 0), scale=200)
+background = Entity(model=Plane(), texture='assets/stars.png', rotation=(0, 0, 0), position=(0, -5, 0), scale=200)
 
 # using cubes to represent asteroid as can't get the above piece to work correctly! (see: experimental_code.py)
 for w in range(0, width):
