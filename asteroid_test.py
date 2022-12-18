@@ -82,9 +82,12 @@ while True:
         camera_controls.turn_right()
     if held_keys['a']:
         camera_controls.turn_left()
-    if held_keys['[']:
-        camera_controls.zoom_out()
-    if held_keys[']']:
-        camera_controls.zoom_in()
+    
+    # mouse input for camera
+    def input(keys):
+        if keys == 'scroll up': 
+            camera_controls.zoom_out()
+        if keys == 'scroll down': 
+            camera_controls.zoom_in()
 
     app.step()

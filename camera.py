@@ -14,6 +14,9 @@ class CameraControl:
     initial_radius: float = -16
     initial_tilt: float = 15
 
+    fov_min: int = 0
+    fov_max: int = 50
+
     def __init__(self, camera: Camera):
         self.camera = camera
         self.angle = self.initial_angle
@@ -36,11 +39,13 @@ class CameraControl:
         self.update()
 
     def zoom_out(self):
-        self.radius -= 1
+        if self.camera.fov > self.fov_min:
+            self.camera.fov -= 1
         self.update()
 
     def zoom_in(self):
-        self.radius += 1
+        if self.camera.fov < self.fov_max:
+            self.camera.fov += 1
         self.update()
 
     def tilt_up(self):
@@ -57,4 +62,4 @@ class CameraControl:
         self.camera.set_position(Vec3(x, self.camera.position.y, y))
         self.camera.rotation_y = math.degrees(self.angle)
         self.camera.rotation_x = self.tilt
-        print (f"Pos: {self.camera.position}, Rot: {self.camera.rotation}, Rad: {self.radius}")
+        print (f"Pos: {self.camera.position}, Rot: {self.camera.rotation}, FOV: {self.camera.fov}")
