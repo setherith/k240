@@ -3,6 +3,7 @@ from ursina import *
 from random import uniform
 
 from camera import CameraControl
+from construction import ConstructionControl
 
 width = 20
 height = 20
@@ -19,12 +20,10 @@ for count in range(5):
 
 blue_button = Entity(model='quad', texture='assets/blue_button.png', position=(0.59, -0.42, 0), scale=(0.14, 0.07), parent=camera.ui)
 
-example_building = Entity(model='models_compressed/shipyard.obj', texture='models_compressed/texture.png', position=(3.5, 0, 3.5))
+example_building = Entity(model='assets/models/shipyard.obj', texture='assets/texture.png', position=(3.5, 0, 3.5))
 
-current_selected_building = Entity(parent=camera.ui, scale=0.05, \
-                                    rotation=Vec3(-20, 45, 19), position=(0.58, -0.2, 0), \
-                                    model='models_compressed/StorageTower.obj', \
-                                    texture='models_compressed/texture.png')
+# construction controls (view and logic)
+construction_controls = ConstructionControl()
 
 # date...
 eons = 2
@@ -60,8 +59,6 @@ for w in range(0, width):
 counter = 0
 camera_controls = CameraControl(camera)
 
-building_placement_tile = Entity(model='quad', color=color.cyan, rotation=(90, 0, 0))
-
 while True:
 
     counter += time.dt
@@ -81,7 +78,7 @@ while True:
 
         counter = 0
 
-    # camera control...
+    # camera control
     if held_keys['w']:
         camera_controls.tilt_up()
     if held_keys['s']:
@@ -92,18 +89,19 @@ while True:
         camera_controls.turn_left()
 
     # detect hover for building placement
-    entity: Entity = mouse.hovered_entity
-    if entity != None:
-        building_placement_tile.visible = True
-        building_placement_tile.set_position(Vec3(entity.position.x, entity.position.y + entity.scale_y / 2 + 0.01, entity.position.z))
-    else:
-        building_placement_tile.visible = False
+    construction_controls.update_placement_tile(mouse.hovered_entity)
 
-    # mouse input for camera
     def input(keys):
+        # mouse input for camera
         if keys == 'scroll up': 
             camera_controls.zoom_out()
         if keys == 'scroll down': 
             camera_controls.zoom_in()
+
+        # construction view controls
+        if keys == '[':
+            construction_controls.previous_building()
+        if keys == ']':
+            construction_controls.next_building()
 
     app.step()
