@@ -5,6 +5,7 @@ from random import uniform
 from camera import CameraControl
 from construction import ConstructionControl
 from game_time import Stardate
+from star_field import Background
 
 width = 20
 height = 20
@@ -29,12 +30,8 @@ construction_controls = ConstructionControl()
 # in game time mechanics
 game_time = Stardate()
 
-# generate star field...
-import star_field
-sf_width = 5000
-sf_height = 5000
-star_field.generate_stars(sf_width, sf_height)
-Sky(texture='assets/stars.png', scale=50)
+# generate star field
+Background(5000, 5000)
 
 # using cubes to represent asteroid as can't get the above piece to work correctly! (see: experimental_code.py)
 for w in range(0, width):
