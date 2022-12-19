@@ -20,6 +20,13 @@ blue_button = Entity(model='quad', texture='assets/blue_button.png', position=(0
 
 example_building = Entity(model='models_compressed/shipyard.obj', texture='models_compressed/texture.png', position=(3.5, 0, 3.5))
 
+current_selected_building = Entity(parent=camera.ui, scale=0.05, \
+                                    rotation=Vec3(-20, 45, 20), position=(0.58, -0.2, 0), \
+                                    model='models_compressed/shipyard.obj', \
+                                    texture='models_compressed/texture.png')
+
+current_selected_building.flipped_faces = True
+
 # date...
 eons = 2
 years = 380
