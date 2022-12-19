@@ -4,6 +4,7 @@ from random import uniform
 
 from camera import CameraControl
 from construction import ConstructionControl
+from game_time import Stardate
 
 width = 20
 height = 20
@@ -25,12 +26,8 @@ example_building = Entity(model='assets/models/shipyard.obj', texture='assets/te
 # construction controls (view and logic)
 construction_controls = ConstructionControl()
 
-# date...
-eons = 2
-years = 380
-days = 1
-date_text = Text(f'E{int(eons)}.{int(years):003}.{int(days):002}', origin=(-0.75, 0.5))
-date_entity = Entity(model=date_text, parent=camera.ui, position=(0.50, -0.465, 0))
+# in game time mechanics
+game_time = Stardate()
 
 # generate star field...
 import star_field
@@ -62,20 +59,8 @@ camera_controls = CameraControl(camera)
 while True:
 
     counter += time.dt
-    
-    # tick...
     if counter > 1:
-        # update date in game...
-        days += 0.5
-        if days == 100:
-            years += 1
-            days = 1
-        if years == 1000:
-            eons += 1
-            years = 1
-        if days % 1 == 0:
-            date_text.text = f'E{int(eons)}.{int(years):003}.{int(days):002}'
-
+        game_time.tick()
         counter = 0
 
     # camera control
