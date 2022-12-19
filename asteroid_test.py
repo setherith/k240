@@ -1,6 +1,5 @@
-from ursina import *
-
-from random import uniform
+from ursina import Ursina, Entity, time, held_keys
+from ursina import camera, mouse
 
 from camera import CameraControl
 from construction import ConstructionControl
@@ -34,15 +33,17 @@ Background(5000, 5000)
 # using cubes to represent asteroid as can't get the above piece to work correctly! (see: experimental_code.py)
 Asteroid(20, 20)
 
-counter = 0
+# set up camera controls
 camera_controls = CameraControl(camera)
+
+ticks = 0
 
 while True:
 
-    counter += time.dt
-    if counter > 1:
+    ticks += time.dt
+    if ticks > 1:
         game_time.tick()
-        counter = 0
+        ticks = 0
 
     # camera control
     if held_keys['w']:
