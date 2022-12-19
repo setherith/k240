@@ -1,11 +1,15 @@
 from random import uniform
 from ursina import Entity, color
 
+from random import choice
+from string import ascii_uppercase, digits
+
 class Asteroid:
     """Generates asteroids"""
 
     height: int
     width: int
+    name: str = ''
 
     def __init__(self, width: int, height: int):
         self.width = width
@@ -26,3 +30,14 @@ class Asteroid:
                     stability_factor = 90
                     if uniform(0, 100) < stability_factor:
                         Entity(model='cube', scale_y=size, position=(w,0 - size / 2,h), color=color.rgb(gray, gray, gray), collider='box')
+        
+        # name it
+        self.generate_name()
+        print (self.name)
+
+    def generate_name(self):
+        for l in range(10):
+            if choice([0, 1]) == 1:
+                self.name += choice(ascii_uppercase)
+            else:
+                self.name += choice(digits)

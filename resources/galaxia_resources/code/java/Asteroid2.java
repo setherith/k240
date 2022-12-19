@@ -1,4 +1,4 @@
-package drawing;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,9 @@ import java.util.Random;
 
 public class Asteroid2 extends JPanel {
 
-    private JFrame frame;
+	private static final long serialVersionUID = 1L;
+
+	private JFrame frame;
 
     private int x = 200; private int y = 200;
     private int grade = 30;
@@ -29,12 +31,12 @@ public class Asteroid2 extends JPanel {
             bearing += angle;
         }
 
-        g.drawPolyline(xs, ys, grade);
-        g.drawLine(xs[0], ys[0], xs[xs.length - 1], ys[ys.length - 1]);
+        g.setColor(Color.GRAY);
+        g.fillPolygon(xs, ys, grade);
     }
 
     public static void main(String[] args) {
-        new Asteroid();
+        new Asteroid2();
     }
 
     private void Blank(Graphics g) {
@@ -42,7 +44,7 @@ public class Asteroid2 extends JPanel {
     }
 
     public Asteroid2() {
-        frame = new JFrame("Test");
+        frame = new JFrame("Asteroid2");
         frame.add(this);
         frame.pack();
         frame.setSize(400, 400);
