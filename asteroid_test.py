@@ -6,9 +6,7 @@ from camera import CameraControl
 from construction import ConstructionControl
 from game_time import Stardate
 from star_field import Background
-
-width = 20
-height = 20
+from asteroid import Asteroid
 
 app = Ursina(size=(1024, 768), borderless=False)
 
@@ -34,21 +32,7 @@ game_time = Stardate()
 Background(5000, 5000)
 
 # using cubes to represent asteroid as can't get the above piece to work correctly! (see: experimental_code.py)
-for w in range(0, width):
-    for h in range(0, height):
-        size = int(uniform(1, 5))
-        gray = int(uniform(50, 100))
-        
-        # erode the edges of the asteroid
-        errosion_factor = 3
-        if w < errosion_factor or w > width - errosion_factor or h > height - errosion_factor or h < errosion_factor:
-            if random.uniform(0, 1) > 0.8:
-                Entity(model='cube', scale_y=size, position=(w,0 - size / 2,h), color=color.rgb(gray, gray, gray), collider='box')
-        else:
-            # stability of asteroid
-            stability_factor = 90
-            if random.uniform(0, 100) < stability_factor:
-                Entity(model='cube', scale_y=size, position=(w,0 - size / 2,h), color=color.rgb(gray, gray, gray), collider='box')
+Asteroid(20, 20)
 
 counter = 0
 camera_controls = CameraControl(camera)

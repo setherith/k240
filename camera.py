@@ -62,4 +62,3 @@ class CameraControl:
         self.camera.set_position(Vec3(x, self.camera.position.y, y))
         self.camera.rotation_y = math.degrees(self.angle)
         self.camera.rotation_x = self.tilt
-        print (f"Pos: {self.camera.position}, Rot: {self.camera.rotation}, FOV: {self.camera.fov}")
