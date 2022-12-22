@@ -1,0 +1,11 @@
+Ore,Chance,Min,Max,Start
+Selenium,0.8,500,1000,250
+Asteros,0.8,250,500,300
+Barium,0.6,250,500,300
+Crystalite,0.8,250,750,100
+Quazinc,0.7,10,100,50
+Bytanium,0.5,10,100,50
+Korellium,0.5,1,50,25
+Dragonium,0.5,10,100,28
+Traxium,0.3,1,10,0
+Nexos,0.2,1,6,0
