@@ -55,3 +55,7 @@ class ConstructionControl:
     def place_building(self):
         Entity(model=self.models[self.building_index], texture='assets/texture.png', \
                 position=(self.placement_tile.position.x, 0, self.placement_tile.position.z))
+
+    @property
+    def is_valid(self) -> bool:
+        return self.placement_tile.visible
