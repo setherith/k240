@@ -65,6 +65,9 @@ while True:
         if keys == 'scroll down': 
             camera_controls.zoom_in()
 
+        if keys == 'left mouse down':
+            construction_controls.place_building()
+
         # construction view controls
         if keys == '[':
             construction_controls.previous_building()
