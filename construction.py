@@ -51,3 +51,11 @@ class ConstructionControl:
             self.placement_tile.set_position(Vec3(target.position.x, target.position.y + target.scale_y / 2 + 0.01, target.position.z))
         else:
             self.placement_tile.visible = False
+
+    def place_building(self):
+        Entity(model=self.models[self.building_index], texture='assets/texture.png', \
+                position=(self.placement_tile.position.x, 0, self.placement_tile.position.z))
+
+    @property
+    def is_valid(self) -> bool:
+        return self.placement_tile.visible
