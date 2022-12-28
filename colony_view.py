@@ -3,7 +3,7 @@ from ursina import camera, mouse
 
 from camera import CameraControl
 from construction import ConstructionControl
-from game_time import Stardate
+from game_time import Stardate, EventManager
 from star_field import Background
 from asteroid import Asteroid
 
@@ -27,6 +27,9 @@ construction_controls = ConstructionControl()
 # in game time mechanics
 game_time = Stardate()
 
+# event manager setup
+events = EventManager()
+
 # generate star field
 Background(5000, 5000)
 
@@ -43,6 +46,7 @@ while True:
     ticks += time.dt
     if ticks > 1:
         game_time.tick()
+        events.tick()
         ticks = 0
 
     # camera control
@@ -67,7 +71,12 @@ while True:
 
         # build structure
         if keys == 'left mouse down' and construction_controls.is_valid:
-            construction_controls.place_building()
+            tasks = construction_controls.place_building_tasks()
+            task_count = 1
+            construction_time = 2
+            for task in tasks:
+                events.add_event(construction_controls.place_building, task, construction_time * task_count)
+                task_count += 1
 
         # construction view controls
         if keys == '[':

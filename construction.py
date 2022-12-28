@@ -2,6 +2,8 @@ from os import listdir
 from typing import List
 from ursina import Vec3, Entity, Text, color, camera
 
+from models.event import BuildInstruction
+
 class ConstructionControl:
     """
     Handles the currently selected building type on the UI
@@ -52,9 +54,16 @@ class ConstructionControl:
         else:
             self.placement_tile.visible = False
 
-    def place_building(self):
-        Entity(model=self.models[self.building_index], texture='assets/texture.png', \
-                position=(self.placement_tile.position.x, 0, self.placement_tile.position.z))
+    def place_building_tasks(self) -> List[BuildInstruction]:
+        orders = []
+        for y in range(4):
+            orders.append(BuildInstruction(self.placement_tile.position.x,
+                        y, self.placement_tile.position.z, self.models[self.building_index]))
+        return orders
+
+    def place_building(self, instructions: BuildInstruction):
+        Entity(model=instructions.model, texture='assets/texture.png', position=(instructions.x, instructions.y, instructions.z))
+
 
     @property
     def is_valid(self) -> bool:

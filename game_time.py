@@ -1,5 +1,27 @@
 from ursina import Text, Entity, camera
 
+from typing import List
+
+from models.event import Event
+
+class EventManager:
+
+    events: List[Event]
+
+    def __init__(self):
+        self.events = []
+
+    def add_event(self, action, params, duration):
+        self.events.append(Event(action, params, duration))
+
+    def tick(self):
+        for event in self.events:
+            if event.duration > 1:
+                event.duration -= 1
+            else:
+                event.method(event.parameters)
+                self.events.remove(event)
+
 class Stardate:
     """
     A class for handling the flows of time in the game (set in the future...)
