@@ -1,6 +1,7 @@
 from csv import reader
 from typing import List
-from ursina import Vec3, Entity, Text, color, camera
+from uuid import uuid1
+from ursina import Vec3, Entity, Text, color, camera, destroy
 
 from models.structure import Structure, Geom
 from game_time import EventManager
@@ -17,6 +18,8 @@ class ConstructionControl:
     current_building: Entity
     building_index: int
     building_number: Text
+
+    groups: dict[str, List[Entity]]
 
     def __init__(self):
 
@@ -35,6 +38,7 @@ class ConstructionControl:
                                     text=self.building_index + 1, position=(0.58, -0.405, 0))
 
         self.events = EventManager()
+        self.groups = {}
 
     def load_buildings(self):
         with open('data/buildings.csv') as buildings_file:
@@ -83,22 +87,39 @@ class ConstructionControl:
         interval = int(self.building.build_time / self.building.scaffold_height)
         bt = 0
 
+        # generate unique ID for scaffolding
+        group = uuid1()
+
         # place staffolding in event queue
         for height in range(self.building.scaffold_height):
             self.events.add_event(self.place_model, Geom (
                 model='assets/models/ConstructionStruts.obj', 
                 texture='assets/texture.png', 
-                position=(self.placement_tile.position.x, height, self.placement_tile.position.z))
-                , bt)
+                position=(self.placement_tile.position.x, height, self.placement_tile.position.z),
+                group=group
+                ), bt)
             bt += interval
 
         # remove scaffolding immediately
-
+        self.events.add_event(self.remove_scaffold, group, bt + 1)
 
         # replace with final building model
+        self.events.add_event(self.place_model, Geom (
+                model=self.building.model, 
+                texture='assets/texture.png', 
+                position=(self.placement_tile.position.x, 0, self.placement_tile.position.z)), 
+                bt)
+
+    def remove_scaffold(self, group: str):
+        for scaffold in self.groups[group]:
+            self.events.add_event(destroy, scaffold, 0)
 
     def place_model(self, geom: Geom):
-        Entity(model=geom.model, texture=geom.texture, position=geom.position)
+        building = Entity(model=geom.model, texture=geom.texture, position=geom.position)
+        if geom.group != None:
+            if geom.group not in self.groups.keys():
+                self.groups[geom.group] = []
+            self.groups[geom.group].append(building)
 
     def tick(self):
         self.events.tick()

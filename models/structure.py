@@ -40,8 +40,10 @@ class Geom:
     model: str
     texture: str
     position: tuple
+    group: str
 
-    def __init__(self, model: str, texture: str, position: tuple):
+    def __init__(self, model: str, texture: str, position: tuple, group: str = None):
         self.model = model
         self.texture = texture
         self.position = position
+        self.group = group
