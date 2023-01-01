@@ -10,12 +10,13 @@ class Structure:
     build_time: int
     scaffold_height: int
     model: str
+    size: int
 
     level: int = 1
     multiplier: float = 1.1
     state: PlantState = PlantState.BUILDING
 
-    def __init__(self, name: str, cost: int, hp: int, time: int, height: int, model: str):
+    def __init__(self, name: str, cost: int, hp: int, time: int, height: int, model: str, size: int):
         self.cost = cost
         self.name = name
         self.max_health = hp
@@ -23,6 +24,7 @@ class Structure:
         self.build_time = time
         self.scaffold_height = height
         self.model = model
+        self.size = size
 
     @abstractmethod
     def proc(self, value: float) -> float:

@@ -46,7 +46,7 @@ class ConstructionControl:
             next(rows) # skipping header
             
             for row in rows:
-                name, cost, hp, time, height, model = row
+                name, cost, hp, time, height, model, size = row
 
                 # model checks
                 if model == '':
@@ -54,7 +54,7 @@ class ConstructionControl:
                 else:
                     model = 'assets/models/' + model
 
-                building = Structure(name, int(cost), int(hp), int(time), int(height) + 1, model)
+                building = Structure(name, int(cost), int(hp), int(time), int(height) + 1, model, int(size))
                 self.structures.append(building)
 
     def next_building(self):
@@ -76,9 +76,19 @@ class ConstructionControl:
         self.current_building.model = self.building.model
 
     def update_placement_tile(self, target: Entity | None):
+        # scale for different size buildings
+        self.placement_tile.scale_x = self.building.size
+        self.placement_tile.scale_y = self.building.size
+
+        # position and visibility
         if target != None:
             self.placement_tile.visible = True
-            self.placement_tile.set_position(Vec3(target.position.x, target.position.y + target.scale_y / 2 + 0.01, target.position.z))
+            
+            # position offset for larger buildings
+            if self.building.size == 2:
+                self.placement_tile.set_position(Vec3(target.position.x + 0.5, target.position.y + target.scale_y / 2 + 0.01, target.position.z + 0.5))
+            else:
+                self.placement_tile.set_position(Vec3(target.position.x, target.position.y + target.scale_y / 2 + 0.01, target.position.z))
         else:
             self.placement_tile.visible = False
 
