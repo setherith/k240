@@ -102,13 +102,24 @@ class ConstructionControl:
 
         # place staffolding in event queue
         for height in range(self.building.scaffold_height):
-            self.events.add_event(self.place_model, Geom (
-                model='assets/models/ConstructionStruts.obj', 
-                texture='assets/texture.png', 
-                position=(self.placement_tile.position.x, height, self.placement_tile.position.z),
-                group=group
-                ), bt)
-            bt += interval
+            if self.building.size == 2:
+                for x in range(2):
+                    for y in range(2):
+                        self.events.add_event(self.place_model, Geom (
+                            model='assets/models/ConstructionStruts.obj', 
+                            texture='assets/texture.png', 
+                            position=(self.placement_tile.position.x - 0.5 + x, height, self.placement_tile.position.z - 0.5 + y),
+                            group=group
+                            ), bt)
+                        bt += interval / 4
+            else:
+                self.events.add_event(self.place_model, Geom (
+                    model='assets/models/ConstructionStruts.obj', 
+                    texture='assets/texture.png', 
+                    position=(self.placement_tile.position.x, height, self.placement_tile.position.z),
+                    group=group
+                    ), bt)
+                bt += interval
 
         # remove scaffolding immediately
         self.events.add_event(self.remove_scaffold, group, bt + 1)
