@@ -23,7 +23,7 @@ C.P.U,8000,36,40,3,,2
 Seismic Penetrator,26500,24,42,2,,2
 Asteroid Engines,45000,28,64,1,,2
 Powerplant,10000,34,40,2,,2
-Command Centre,8000,36,32,2,,2
+Command Centre,8000,36,32,2,CommandCentre.obj,2
 Construction Yard,7500,20,32,2,ConstructionYard.obj,2
 Landing Pad,300,5,16,0,,1
 Laser Turret,3400,16,24,0,,1
