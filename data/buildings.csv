@@ -1,41 +1,41 @@
-Building,Cost,HP,Build Time,Scaffold Height,Model,Size
-Living Quarters,1000,5,32,0,LivingQuarters.obj,1
-Power Store,1500,34,32,0,,1
-Storage Facility,1500,24,20,0,,1
-Anti-Missile Pod,7000,16,36,0,,1
-Solar Panel,500,5,8,0,,1
-Decontamination Filter,8000,24,32,2,,1
-Solar Generator,1500,10,10,0,,1
-Weapons Factory,4400,24,32,0,,1
-Mine,4000,20,32,0,,1
-Satellite Silo,5000,10,24,0,,1
-Screen Generator,20000,36,52,0,,1
-Ore Teleporter,45000,36,48,1,,1
-Gravity Nullifier,35000,24,52,1,,1
-Deep Bore Mine,5500,20,36,0,,1
-Missile Silo,4300,15,32,0,,1
-Repair Facility,20000,20,36,1,,1
-Sensor Array,3500,15,36,3,,1
-Plasma Turret,5500,20,30,0,,1
-Photon Turret,7500,20,52,0,,1
-Life Support,13000,24,48,2,,1
-C.P.U,8000,36,40,3,,2
-Seismic Penetrator,26500,24,42,2,,2
-Asteroid Engines,45000,28,64,1,,2
-Powerplant,10000,34,40,2,,2
-Command Centre,8000,36,32,2,CommandCentre.obj,2
-Construction Yard,7500,20,32,2,ConstructionYard.obj,2
-Landing Pad,300,5,16,0,,1
-Laser Turret,3400,16,24,0,,1
-Solar Matrix,5000,10,32,3,,1
-Resiblock,3000,10,48,3,,1
-Storage Tower,3000,32,40,2,StorageTower.obj,1
-Protected Solar Matrix,7200,20,48,3,,1
-Protected Resiblock,8500,20,56,3,,1
-Protected Storage Tower,7500,32,48,2,,1
-Medical Centre,5000,15,30,3,,1
-Environment Control,3200,34,20,2,,1
-Protected Env/Ctrl,8500,52,32,3,,1
-Hydroponics,7000,24,16,3,,1
-Hydration Plant,5000,20,20,3,,1
-Security Centre,4500,15,24,2,,1
+Building,Cost,HP,Build Time,Scaffold Height,Model,Size,Info
+Living Quarters,1000,5,32,0,LivingQuarters.obj,1,COMPLETE FACILITIES FOR THE CONFIRT OF 50 EMPLOYEES.
+Power Store,1500,34,32,0,,1,
+Storage Facility,1500,24,20,0,,1,
+Anti-Missile Pod,7000,16,36,0,,1,
+Solar Panel,500,5,8,0,,1,
+Decontamination Filter,8000,24,32,2,,1,
+Solar Generator,1500,10,10,0,,1,
+Weapons Factory,4400,24,32,0,,1,
+Mine,4000,20,32,0,,1,
+Satellite Silo,5000,10,24,0,,1,
+Screen Generator,20000,36,52,0,,1,
+Ore Teleporter,45000,36,48,1,,1,
+Gravity Nullifier,35000,24,52,1,,1,
+Deep Bore Mine,5500,20,36,0,,1,
+Missile Silo,4300,15,32,0,,1,
+Repair Facility,20000,20,36,1,,1,
+Sensor Array,3500,15,36,3,,1,
+Plasma Turret,5500,20,30,0,,1,
+Photon Turret,7500,20,52,0,,1,
+Life Support,13000,24,48,2,,1,
+C.P.U,8000,36,40,3,,2,
+Seismic Penetrator,26500,24,42,2,,2,
+Asteroid Engines,45000,28,64,1,,2,
+Powerplant,10000,34,40,2,,2,
+Command Centre,8000,36,32,2,CommandCentre.obj,2,
+Construction Yard,7500,20,32,2,ConstructionYard.obj,2,
+Landing Pad,300,5,16,0,LandingPad.obj,1,PROVIDES ACCESS TO UNDERGROUND SHIP HANGERS.
+Laser Turret,3400,16,24,0,,1,
+Solar Matrix,5000,10,32,3,,1,
+Resiblock,3000,10,48,3,,1,
+Storage Tower,3000,32,40,2,StorageTower.obj,1,
+Protected Solar Matrix,7200,20,48,3,,1,
+Protected Resiblock,8500,20,56,3,,1,
+Protected Storage Tower,7500,32,48,2,,1,
+Medical Centre,5000,15,30,3,,1,
+Environment Control,3200,34,20,2,,1,
+Protected Env/Ctrl,8500,52,32,3,,1,
+Hydroponics,7000,24,16,3,,1,
+Hydration Plant,5000,20,20,3,,1,
+Security Centre,4500,15,24,2,,1,

@@ -48,7 +48,7 @@ class ConstructionControl:
             next(rows) # skipping header
             
             for row in rows:
-                name, cost, hp, time, height, model, size = row
+                name, cost, hp, time, height, model, size, info = row
 
                 # model checks
                 if model == '':
