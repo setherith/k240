@@ -6,6 +6,8 @@ from ursina import Vec3, Entity, Text, color, camera, destroy
 from models.structure import Structure, Geom
 from game_time import EventManager
 
+__DEBUG__ = True
+
 class ConstructionControl:
     """
     Handles the currently selected building type on the UI
@@ -95,6 +97,10 @@ class ConstructionControl:
     def start_building(self):
         # calculate build time
         interval = int(self.building.build_time / self.building.scaffold_height)
+
+        ### DEBUG OPTION ###
+        if __DEBUG__: interval = 1
+
         bt = 0
 
         # generate unique ID for scaffolding
