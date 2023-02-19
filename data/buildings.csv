@@ -1,5 +1,5 @@
 Building,Cost,HP,Build Time,Scaffold Height,Model,Size
-Living Quarters,1000,5,32,0,,1
+Living Quarters,1000,5,32,0,LivingQuarters.obj,1
 Power Store,1500,34,32,0,,1
 Storage Facility,1500,24,20,0,,1
 Anti-Missile Pod,7000,16,36,0,,1
