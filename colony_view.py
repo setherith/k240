@@ -1,5 +1,5 @@
 from ursina import Ursina, Entity, time, held_keys
-from ursina import camera, mouse
+from ursina import camera, mouse, Vec3
 
 from camera import CameraControl
 from construction import ConstructionControl
@@ -53,6 +53,11 @@ while True:
         camera_controls.turn_right()
     if held_keys['a']:
         camera_controls.turn_left()
+
+    # mouse pan camera control
+    if mouse.delta != Vec3(0,0,0) and not mouse.left:
+        camera_controls.pan(mouse.delta)
+        mouse.delta = Vec3(0,0,0)
 
     # detect hover for building placement
     construction_controls.update_placement_tile(mouse.hovered_entity)
