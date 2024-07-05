@@ -1,6 +1,6 @@
 from csv import reader
 from typing import List
-from uuid import uuid1
+from uuid import uuid4
 from ursina import Vec3, Entity, Text, color, camera, destroy
 
 from models.structure import Structure, Geom
@@ -101,10 +101,10 @@ class ConstructionControl:
         ### DEBUG OPTION ###
         if __DEBUG__: interval = 1
 
-        bt = 0
+        build_time = 0
 
         # generate unique ID for scaffolding
-        group = uuid1()
+        group = uuid4()
 
         # place staffolding in event queue
         for height in range(self.building.scaffold_height):
@@ -116,26 +116,26 @@ class ConstructionControl:
                             texture='assets/texture.png', 
                             position=(self.placement_tile.position.x - 0.5 + x, height, self.placement_tile.position.z - 0.5 + y),
                             group=group
-                            ), bt)
-                        bt += interval / 4
+                            ), build_time)
+                        build_time += interval / 4
             else:
                 self.events.add_event(self.place_model, Geom (
                     model='assets/models/ConstructionStruts.obj', 
                     texture='assets/texture.png', 
                     position=(self.placement_tile.position.x, height, self.placement_tile.position.z),
                     group=group
-                    ), bt)
-                bt += interval
+                    ), build_time)
+                build_time += interval
 
         # remove scaffolding immediately
-        self.events.add_event(self.remove_scaffold, group, bt + 1)
+        self.events.add_event(self.remove_scaffold, group, build_time + 1)
 
         # replace with final building model
         self.events.add_event(self.place_model, Geom (
                 model=self.building.model, 
                 texture='assets/texture.png', 
                 position=(self.placement_tile.position.x, 0, self.placement_tile.position.z)), 
-                bt)
+                build_time)
 
     def remove_scaffold(self, group: str):
         for scaffold in self.groups[group]:

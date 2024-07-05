@@ -1,6 +1,6 @@
 import math
 from ursina.camera import Camera
-from ursina import Vec3
+from ursina import Vec3, LVector3f
 
 class CameraControl:
 
@@ -55,6 +55,9 @@ class CameraControl:
     def tilt_down(self):
         self.tilt -= 1
         self.update()
+
+    def pan(self, drag: LVector3f):
+        self.camera.set_position(self.camera.get_position() + drag)
 
     def update(self):
         x = self.radius * math.sin(self.angle) + 10
